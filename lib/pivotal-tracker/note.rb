@@ -4,7 +4,6 @@ class Note
   element :text, String
   element :author, String
   element :noted_at, DateTime
-  has_one :story, Story
 
   def initialize(attributes = {})
     attributes.each do |key, value|

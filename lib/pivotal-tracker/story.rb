@@ -13,7 +13,6 @@ class Story
   element :accepted_at, DateTime
   element :labels, String
   element :description, String
-  has_one :iteration, Iteration
 
   def initialize(attributes = {})
     attributes.each do |key, value|
