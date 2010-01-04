@@ -1,5 +1,5 @@
-class Story
-  include HappyMapper
+class PivotalTracker::Story < PivotalTracker::Abstract
+
   element :id, Integer
   element :story_type, String
   element :url, String

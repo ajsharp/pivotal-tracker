@@ -1,4 +1,4 @@
-class Membership
+class PivotalTracker::Membership
   include HappyMapper
   element :id, Integer
   element :role, String

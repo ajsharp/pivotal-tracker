@@ -1,4 +1,4 @@
-class Iteration
+class PivotalTracker::Iteration
   include HappyMapper
   element :id, Integer
   element :number, Integer
