@@ -6,20 +6,20 @@ require 'bundler'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "pivotal-tracker"
+    gem.name = "pivotal_tracker"
     gem.summary = %Q{Ruby wrapper for the Pivotal Tracker API}
     gem.email = "justin.smestad@gmail.com"
-    gem.homepage = "http://github.com/jsmestad/pivotal-tracker"
+    gem.homepage = "http://github.com/jsmestad/pivotal_tracker"
     gem.authors = ["Justin Smestad", "Josh Nichols", "Terence Lee"]
-    
+
     manifest = Bundler::Environment.load(File.dirname(__FILE__) + '/Gemfile')
     manifest.dependencies.each do |d|
       next if d.only
       gem.add_dependency(d.name, d.version)
     end
-    
-  end
 
+  end
+  Jeweler::GemcutterTasks.new
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
