@@ -1,36 +1,12 @@
 class PivotalTracker::Story < PivotalTracker::Abstract
+  attr_accessor :project
 
-  element :id, Integer
-  element :story_type, String
-  element :url, String
-  element :estimate, Integer
-  element :current_state, String # possible states: unscheduled, unstarted, started, finished, accepted, rejected
-  element :name, String
-  element :requested_by, String
-  element :owned_by, String
-  element :created_at, DateTime
-  element :accepted_at, DateTime
-  element :labels, String
-  element :description, String
-  has_one :iteration, Iteration
-
-  def initialize(attributes = {})
-    attributes.each do |key, value|
-      send("#{key}=", value)
-    end
+  def initialize(project_id)
+    self.project = project_id
   end
 
-  def to_xml(options = {})
-    builder = Builder::XmlMarkup.new(options)
-    builder.story do |story|
-      Story.elements.each do |element_type|
-        element = send(element_type.name)
-        eval("story.#{element_type.name}(\"#{element.to_s.gsub("\"", "\\\"")}\")") if element
-      end
-    end
+  def all
+    Client.connection["/projects/#{project}/stories"].get
   end
 
-  def to_param
-    id.to_s
-  end
 end

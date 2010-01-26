@@ -1,26 +1,28 @@
-class PivotalTracker::Project < PivotalTracker::Abstract
+module PivotalTracker
+  class Project
 
-  element :id, Integer
-  element :name, String
-  element :iteration_length, Integer
-  element :week_start_day, String
-  element :point_scale, String
+    class << self
+      def all
+        # /projects
+        # Parse each and create new project array
+        # response.each {|x| projects << parse(x) }
+        #parse(connection['/projects'].get)
+        Client.connection['/projects'].get
+      end
 
-  class << self
-
-    def all
-      parse(client["/projects"].get)
+      def find(id)
+        # http://www.pivotaltracker.com/services/v2/projects/#{id}
+        # parse response
+        #parse(connection['/projects/#{id}'])
+        Client.connection["/projects/#{id}"].get
+      end
     end
 
-    def find(project_id)
-      raise PivotalTracker::ProjectNotSpecified, 'project id was not specified' if project_id.nil?
-      parse(client["/projects/#{project_id}"].get)
+    attr_accessor :stories
+
+    def initialize
+      self.stories ||= []
     end
 
   end
-
-
-  protected
-
-
 end
