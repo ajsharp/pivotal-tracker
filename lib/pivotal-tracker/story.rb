@@ -4,8 +4,7 @@ class PivotalTracker::Story < PivotalTracker::Abstract
   element :story_type, String
   element :url, String
   element :estimate, Integer
-  # possible states: unscheduled, unstarted, started, finished, accepted, rejected
-  element :current_state, String
+  element :current_state, String # possible states: unscheduled, unstarted, started, finished, accepted, rejected
   element :name, String
   element :requested_by, String
   element :owned_by, String

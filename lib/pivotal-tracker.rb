@@ -21,12 +21,7 @@ module PivotalTracker
   class Abstract; end
   class Story < Abstract; end
   class Iteration < Abstract; end
-  class Project < Abstract
-    def self.find(id)
-      projects = Client.instance.projects.get
-      parse(projects)
-    end
-  end
+  class Project < Abstract; end
   class Note < Abstract; end
   class Person < Abstract; end
   class Membership < Abstract; end
@@ -42,8 +37,8 @@ module PivotalTracker
       self.base_url = options[:use_ssl] ? "http://www.pivotaltracker.com/services/v2" : "https://www.pivotaltracker.com/services/v2"
     end
 
-    def project(id = self.project_id)
-      Project.find(id)
+    def project(id)
+      Project.find(id || project_id)
     end
 
     def projects
@@ -128,6 +123,7 @@ module PivotalTracker
     end
 
   protected
+
     def base_resource
       RestClient::Resource.new "#{base_url}",
       :headers => {
@@ -135,6 +131,7 @@ module PivotalTracker
         'Content-Type' => 'application/xml'
       }
     end
+
     def projects_resource
       RestClient::Resource.new "#{base_url}/projects",
 
