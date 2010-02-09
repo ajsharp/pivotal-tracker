@@ -1,10 +1,17 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-project_root = File.expand_path(File.dirname(__FILE__))
-require File.join(project_root, '..', 'vendor', 'gems', 'environment')
-Bundler.require_env(:test)
- 
+begin
+  # Require the preresolved locked set of gems.
+  require File.expand_path('../.bundle/environment', __FILE__)
+rescue LoadError
+  # Fallback on doing the resolve at runtime.
+  require "rubygems"
+  require "bundler"
+  Bundler.setup
+end
+Bundler.require(:default, :test)
+
 require 'pivotal-tracker'
 require 'spec'
 require 'spec/autorun'

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 module PivotalTracker
   class Project
 
