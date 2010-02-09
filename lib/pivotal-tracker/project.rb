@@ -18,10 +18,11 @@ module PivotalTracker
       end
     end
 
-    attr_accessor :stories
+    attr_accessor :stories, :members
 
     def initialize
       self.stories ||= []
+      self.members ||= []
     end
 
   end

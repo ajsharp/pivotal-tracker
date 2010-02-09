@@ -33,4 +33,17 @@ describe PivotalTracker::Project do
       @project.stories.first.should be_a(PivotalTracker::Story)
     end
   end
+
+  context "#members" do
+    before do
+      @project = PivotalTracker::Project.new
+    end
+
+    it "should return any members associated with a project" do
+      @project.members.should be_empty
+      @project.members << PivotalTracker::Member.new(@project)
+      @project.members.size.should == 1
+      @project.members.first.should be_a(PivotalTracker::Member)
+    end
+  end
 end
