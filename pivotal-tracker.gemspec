@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Justin Smestad", "Josh Nichols", "Terence Lee"]
-  s.date = %q{2010-01-26}
+  s.date = %q{2010-02-08}
   s.email = %q{justin.smestad@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -37,9 +37,11 @@ Gem::Specification.new do |s|
      "lib/pivotal_tracker.rb",
      "pivotal-tracker.gemspec",
      "spec/extensions_spec.rb",
+     "spec/functional/project_spec.rb",
      "spec/pivotal_tacker_spec.rb",
      "spec/spec.opts",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "spec/unit/project_spec.rb"
   ]
   s.homepage = %q{http://github.com/jsmestad/pivotal-tracker}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -48,8 +50,10 @@ Gem::Specification.new do |s|
   s.summary = %q{Ruby wrapper for the Pivotal Tracker API}
   s.test_files = [
     "spec/extensions_spec.rb",
+     "spec/functional/project_spec.rb",
      "spec/pivotal_tacker_spec.rb",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "spec/unit/project_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
@@ -58,17 +62,11 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rest-client>, [">= 0"])
-      s.add_runtime_dependency(%q<happymapper>, [">= 0.2.4"])
-      s.add_runtime_dependency(%q<builder>, [">= 0"])
     else
       s.add_dependency(%q<rest-client>, [">= 0"])
-      s.add_dependency(%q<happymapper>, [">= 0.2.4"])
-      s.add_dependency(%q<builder>, [">= 0"])
     end
   else
     s.add_dependency(%q<rest-client>, [">= 0"])
-    s.add_dependency(%q<happymapper>, [">= 0.2.4"])
-    s.add_dependency(%q<builder>, [">= 0"])
   end
 end
 
