@@ -1,12 +1,15 @@
-class PivotalTracker::Story < PivotalTracker::Abstract
-  attr_accessor :project
+module PivotalTracker
+  class Story
 
-  def initialize(project_id)
-    self.project = project_id
+    attr_accessor :project
+
+    def initialize(project)
+      self.project = project
+    end
+
+    def all
+      Client.connection["/projects/#{project.id}/stories"].get
+    end
+
   end
-
-  def all
-    Client.connection["/projects/#{project}/stories"].get
-  end
-
 end
